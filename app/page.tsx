@@ -1,103 +1,128 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+
+import HeroSection from "../components/hero";
+import AboutSection from "../components/about";
+import SkillsSection from "../components/skills";
+import ProjectsSection from "../components/project";
+import ExperienceSection from "../components/experience";
+import ContactSection from "../components/contact";
+import Navigation from "../components/navigation";
+import Head from "next/head";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [activeSection, setActiveSection] = useState("hero");
+  const { scrollYProgress } = useScroll();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.3]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        "hero",
+        "about",
+        "skills",
+        "projects",
+        "experience",
+        "contact",
+      ];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>Mizan Ali Khan | Full Stack Developer</title>
+        <meta
+          name="description"
+          content="Portfolio of Mizan Ali Khan - Full Stack Developer specializing in the MERN stack, TypeScript, Next.js, and scalable web applications."
+        />
+        <meta
+          name="keywords"
+          content="Mizan Ali Khan, Full Stack Developer, MERN, TypeScript, Next.js, React.js, MongoDB, PostgreSQL, Portfolio, Lucknow Developer, Web Developer, Software Developer"
+        />
+        <meta name="author" content="Mizan Ali Khan" />
+        <meta
+          property="og:title"
+          content="Mizan Ali Khan | Full Stack Developer"
+        />
+        <meta
+          property="og:description"
+          content="Explore the work and projects of Mizan Ali Khan, a full stack engineer crafting real-world web apps with MERN, Next.js, TypeScript, and Prisma."
+        />
+        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:url" content="https://your-domain.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-x-hidden">
+        {/* Animated Background */}
+        <motion.div
+          className="fixed inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%)",
+            opacity: backgroundOpacity,
+          }}
+        />
+
+        {/* Floating Navigation */}
+        <Navigation activeSection={activeSection} />
+
+        {/* Main Content */}
+        <div className="relative z-10">
+          <section id="hero">
+            <HeroSection />
+          </section>
+
+          <section id="about">
+            <AboutSection />
+          </section>
+
+          <section id="skills">
+            <SkillsSection />
+          </section>
+
+          <section id="projects">
+            <ProjectsSection />
+          </section>
+
+          <section id="experience">
+            <ExperienceSection />
+          </section>
+
+          <section id="contact">
+            <ContactSection />
+          </section>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Scroll Progress Bar */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform-gpu z-50"
+          style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
+        />
+      </div>
+    </>
   );
 }
