@@ -10,7 +10,6 @@ import ProjectsSection from "../components/project";
 import ExperienceSection from "../components/experience";
 import ContactSection from "../components/contact";
 import Navigation from "../components/navigation";
-import Head from "next/head";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -47,32 +46,8 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Mizan Ali Khan | Full Stack Developer</title>
-        <meta
-          name="description"
-          content="Portfolio of Mizan Ali Khan - Full Stack Developer specializing in the MERN stack, TypeScript, Next.js, and scalable web applications."
-        />
-        <meta
-          name="keywords"
-          content="Mizan Ali Khan, Full Stack Developer, MERN, TypeScript, Next.js, React.js, MongoDB, PostgreSQL, Portfolio, Lucknow Developer, Web Developer, Software Developer"
-        />
-        <meta name="author" content="Mizan Ali Khan" />
-        <meta
-          property="og:title"
-          content="Mizan Ali Khan | Full Stack Developer"
-        />
-        <meta
-          property="og:description"
-          content="Explore the work and projects of Mizan Ali Khan, a full stack engineer crafting real-world web apps with MERN, Next.js, TypeScript, and Prisma."
-        />
-        <meta property="og:image" content="/og-image.png" />
-        <meta property="og:url" content="https://your-domain.com" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-x-hidden">
-        {/* Animated Background */}
+        {/* Background */}
         <motion.div
           className="fixed inset-0 z-0"
           style={{

@@ -276,8 +276,7 @@ export default function ContactSection() {
           className="text-center mt-16 pt-8 border-t border-gray-700"
         >
           <p className="text-gray-400">
-            © 2024 Full Stack Developer. Built with React, Tailwind CSS, and
-            lots of ☕
+            © {new Date().getFullYear()} Mizan Ali Khan | Full Stack Developer
           </p>
         </motion.div>
       </div>
