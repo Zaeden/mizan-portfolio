@@ -18,6 +18,10 @@ export default function Home() {
   const backgroundOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.3]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const sections = [
         "hero",
@@ -46,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-x-hidden">
+      <div className="min-h-[100dvh] bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-x-hidden">
         {/* Background */}
         <motion.div
           className="fixed inset-0 z-0"
