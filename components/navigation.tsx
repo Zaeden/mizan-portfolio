@@ -16,7 +16,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { id: "hero", label: "Home" },
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },

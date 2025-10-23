@@ -28,7 +28,7 @@ export default function SkillsSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, index) => (
+          {skillCategories.map((category) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 50 }}

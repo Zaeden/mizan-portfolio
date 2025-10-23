@@ -35,10 +35,11 @@ export default function AboutSection() {
             <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-purple-500/50 transition-colors duration-300">
               <CardContent className="p-8">
                 <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                  I'm a passionate full-stack developer with a love for creating
-                  elegant, efficient solutions to complex problems. My journey
-                  in software development began with curiosity and has evolved
-                  into a commitment to crafting exceptional user experiences.
+                  I&apos;m a passionate full-stack developer with a love for
+                  creating elegant, efficient solutions to complex problems. My
+                  journey in software development began with curiosity and has
+                  evolved into a commitment to crafting exceptional user
+                  experiences.
                 </p>
                 <p className="text-lg text-gray-300 leading-relaxed mb-6">
                   Proficient in both front-end and back-end development,
@@ -70,7 +71,7 @@ export default function AboutSection() {
                 </h3>
               </div>
               <p className="text-gray-300">
-                I believe in writing code that's not just functional, but
+                I believe in writing code that&apos;s not just functional, but
                 readable, maintainable, and elegant.
               </p>
             </motion.div>

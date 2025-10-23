@@ -47,7 +47,6 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1200));
       setSubmitStatus({
         type: "success",
@@ -57,7 +56,7 @@ export default function ContactSection() {
     } catch (error) {
       setSubmitStatus({
         type: "error",
-        message: "Failed to send message. Please try again.",
+        message: "Failed to send message. Please try again." + error,
       });
     } finally {
       setIsSubmitting(false);
@@ -74,11 +73,11 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ready to bring your next project to life? Let's discuss how we can
-            work together.
+            Ready to bring your next project to life? Let&apos;s discuss how we
+            can work together.
           </p>
         </motion.div>
 
